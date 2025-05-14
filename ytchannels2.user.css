@@ -197,6 +197,15 @@
         margin: 0 10px;
         border-radius: 4px;
     }
+    
+    #c3-nav {
+  padding-bottom: 20px;
+  margin-block-start: -10px;
+}
+    
+    #c3-feed-header-rule {
+        visibility:hidden;
+    }
     #c3-below {
         position: relative;
         background-image: none;
@@ -207,7 +216,7 @@
         margin-bottom: 75%;
         
         #c3-content {
-            border-right: 6px solid @wrColor;
+            background-color: @bgColor;
             
             .yt-ui-ellipsis.yt-uix-expander-head {
                 line-height: 14px;
@@ -231,24 +240,41 @@
             .video-player-view-component .title a { font-weight: bold;}
         }
         #c3-content-items {
-            &:not(:has(.c3-feed-item)) {
+            &:not(:has(.c3-feed-item, .c3-backstage)) {
                 position: absolute;
                 right: 0;
                 top: 0;
                 height: 480px;
-                width: 300px;
                 overflow-y: auto;
                 overflow-x: hidden;
                 padding: 5px 0 5px 0;
                 margin: 48px 2.5px 0 2.5px;
                 border-top: 1px solid #000;
             }
+            
+            &:has(.c3-backstage) {
+                position: absolute;
+                right: 0;
+                top: 0;
+                height: 576px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding: 5px;
+                margin: 48px 0px 0 0px;
+                left: 0px;
+                background-color: @bgColor;
+                border-top: 6px solid @wrColor;
+            }
             .c3-featured-list {
-                width: 95%;
+                width: 300px;
             }
             #c3-featured-list {
                 padding: 5px;
             }
+        }
+        
+        .is-feed #c3-content {
+  padding: 10px 0px !important;
         }
         #c3-feed-tab.active #c3-content-items {
             position: static;
@@ -256,18 +282,52 @@
             width: auto;
             padding: 0;
         }
+        
+        .c3-nav-item.c3-feed-tab.active {
+            background-image: none;
+            background-color: #333;
+            color: #fff;
+            text-shadow: none;
+            box-shadow: none;
+            border: none;
+            padding: 7px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+            margin: 0 10px;
+            border-radius: 4px;
+        }
+        
+        .c3-feed-tab {
+        color: @wrColor;
+        font-weight: normal;
+            font-size: 14px;
+            margin: 0 10px;
+        padding: 4px 7px;
+    }
+        
+        .c3-feed-tab:hover {
+             color: #fff;
+        background-image: none;
+        background-color: #aaa;
+        padding: 4px 7px;
+        margin: 0 10px;
+        border-radius: 4px;
+        box-shadow: none;
+        text-shadow: none;
+            text-decoration: none;
+        }
         #c3-sidebar {
-            /* width: 100%;
-            position: absolute; */
             bottom: 0;
             left: 0;
+            border-left: 6px solid @wrColor;
         }
     }
     #c3-search {
         position: absolute;
         overflow: visible;
         right: 99.5px;
-        top: 15%;
+        top: 234px;
         z-index: 1;
     }
     #c3-search {
@@ -345,7 +405,7 @@
     .c3 .blogger-video {
         font-size: 11px;
         margin-bottom: 10px;
-        
+        width:272px;
         height: 68px;
         position: relative;
         
@@ -420,6 +480,15 @@
             display: inline-block !important;
         }
     }
+    
+    .c3.is-videos .yt-shelf-grid-item {
+  width: 320px !important;
+  margin: 0 25px 25px 0;
+  padding: 0;
+}
+    .yt-lockup .yt-lockup-content {
+  margin-inline-start: 8px;
+}
     .channels-content-item.yt-shelf-grid-item {
         font-size: 11px;
         height: 68px;
@@ -439,7 +508,7 @@
             border-radius: 3px;
         }
         .yt-lockup-title {
-            position: absolute;
+            /*position: absolute;*/
             top: 0;
             left: 116px;
             margin-top: 4px;
@@ -459,7 +528,6 @@
             }
         }
         .yt-lockup-meta.yt-ui-ellipsis.yt-ui-ellipsis-2 {
-            position: absolute;
             top: 40%;
             left: 116px;
             
@@ -548,7 +616,7 @@
         }
     }
     
-    #c3-header-meta, .yt-subscription-button-subscriber-count-branded-horizontal::before, .yt-subscription-button-subscriber-count-branded-horizontal::after, .c3-featured-playall, #c3-content-header, .c3 .blogger-video .video-item-description, .c3 .blogger-video .video-owner, .c3-featured-content .yt-lockup.yt-lockup-tile, #footer-container, #c3-featured-playlists-slot, #c3-sidebar-subscribe {
+    #c3-header-meta, .yt-subscription-button-subscriber-count-branded-horizontal::before, .yt-subscription-button-subscriber-count-branded-horizontal::after, .c3-featured-playall, #c3-content-header, .c3 .blogger-video .video-item-description, .c3 .blogger-video .video-owner, #footer-container, #c3-featured-playlists-slot, #c3-sidebar-subscribe {
         display: none !important;
         width: 0 !important;
         height: 0 !important;
@@ -556,6 +624,44 @@
         font-size: 0 !important;
     }
 }
+
+.c3-featured-content .yt-lockup.yt-lockup-tile:hover{
+  box-shadow: none;
+  text-decoration: none;
+  color: #333;
+}
+
+.c3-featured-content .yt-lockup.yt-lockup-tile{
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 3px;
+  box-shadow: none;
+  margin-bottom: 5px;
+  padding: 5px;
+  color: #333;
+}
+
+.c3-featured-content .yt-lockup.yt-lockup-tile .yt-lockup-title a {
+    font-weight: bold;
+}
+
+.c3-featured-content .yt-lockup.yt-lockup-tile .yt-user-name-icon-verified::before {
+  content: "";
+  font-size: 12px;
+  font-weight: bold;
+}
+.c3-featured-content .yt-ui-ellipsis-2 {
+  max-height: 4.7em !important;
+    margin-block-start: 4px;
+}
+
+html[exp-channels3][location="playlist"] body .v3 #page.feed #content, html[exp-channels3] body .v3 #page.channel #content{
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 /*  == INFO ==
      This userstyle brings back the 2010 - 2012 channel page style.
      It requires V3 to function and it works best with StarTube's Aozora 2011 layout.
